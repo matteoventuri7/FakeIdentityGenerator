@@ -64,7 +64,7 @@ function Copy(event) {
     document.execCommand('copy', false);
     inp.remove();
 
-    NotifyUser('Fake Identity Creator', 'Copied!');
+    NotifyUser('Fake Identity Generator', 'Copied!');
 }
 
 function NotifyUser(title, msg) {
@@ -75,9 +75,9 @@ function NotifyUser(title, msg) {
         iconUrl: "icon.png"
     };
 
-    chrome.notifications.create("FakeIdentityCreatorNotification", options, function(){
+    chrome.notifications.create("FakeIdentityGeneratorNotification", options, function(){
         setTimeout(function(){
-            chrome.notifications.clear("FakeIdentityCreatorNotification");
+            chrome.notifications.clear("FakeIdentityGeneratorNotification");
         }, 2000);
     });
 }
