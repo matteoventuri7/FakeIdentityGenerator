@@ -8,6 +8,8 @@ const $birthPlace = document.getElementById('birthPlace');
 const $prov = document.getElementById('prov');
 const $piva = document.getElementById('piva');
 const $cf = document.getElementById('cf');
+const $address = document.getElementById('address');
+const $zip = document.getElementById('zip');
 
 const pg = new ITVatGV();
 
@@ -24,7 +26,8 @@ function IsDataStored() {
 }
 
 function GenerateNewIdentity() {
-    let completeName, firstName, lastName, gender, d, m, y, birthDate, birthPlace, prov, email, piva, cf, company;
+    let completeName, firstName, lastName, gender, d, m, y, 
+    birthDate, birthPlace, prov, email, piva, cf, company, address, zip;
 
     if (!IsDataStored()) {
         company = faker.company.companyName() + ' ' + faker.company.companySuffix();
@@ -60,6 +63,9 @@ function GenerateNewIdentity() {
             cf = ex.message;
         }
 
+        address = faker.address.streetName().split(' ').reverse().join(' ')+' '+faker.random.number(999);
+        zip = faker.address.zipCode();
+
         localStorage.setItem('company', company);
         localStorage.setItem('firstName', firstName);
         localStorage.setItem('lastName', lastName);
@@ -75,6 +81,9 @@ function GenerateNewIdentity() {
 
         localStorage.setItem('piva', piva);
         localStorage.setItem('cf', cf);
+
+        localStorage.setItem('address', address);
+        localStorage.setItem('zip', zip);
 
         localStorage.setItem('fakeIdentityStored', new Date().getTime());
     } else {
@@ -95,6 +104,9 @@ function GenerateNewIdentity() {
 
         piva = localStorage.getItem('piva');
         cf = localStorage.getItem('cf');
+
+        address = localStorage.getItem('address');
+        zip = localStorage.getItem('zip');
     }
 
     $company.innerText = company;
@@ -107,6 +119,8 @@ function GenerateNewIdentity() {
     $prov.innerText = prov;
     $piva.innerText = piva;
     $cf.innerText = cf;
+    $address.innerText = address;
+    $zip.innerText = zip;
 }
 
 function FormatDate(MyDate) {
